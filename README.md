@@ -1,36 +1,30 @@
-# simple-ml-baseline-
-A simple machine learning baseline project
-# Machine Learning Model Comparison
+# Task 03 — Features and Tuning
 
-## Project Overview
-This project compares three machine learning algorithms using the Breast Cancer Wisconsin dataset.
+## Overview
+This project uses the Breast Cancer Wisconsin dataset to demonstrate feature engineering, cross-validation, and hyperparameter tuning.
 
-## Models
-1. Logistic Regression
-2. Decision Tree
-3. Random Forest
+## What is included
+- Three engineered features: `radius_area_proxy`, `texture_smoothness_interaction`, and `worst_to_mean_radius_ratio`
+- Stratified 5-fold cross-validation
+- `GridSearchCV` for Logistic Regression hyperparameters
+- Before-and-after test metrics: accuracy, malignant-class precision, malignant-class recall, malignant-class F1, and ROC-AUC
 
-## Methodology
-- Used the same 80/20 train-test split for all models.
-- Used `random_state=42` for reproducibility.
-- Evaluated using Accuracy, Precision, Recall, F1-score, and ROC-AUC.
+## Run in Google Colab
+1. Open https://colab.research.google.com/
+2. Upload `improved_model.ipynb`.
+3. Select **Runtime → Run all**.
+4. Review the best parameters and the before-and-after comparison table.
 
-## Results
+## Run locally
+Install dependencies, then open the notebook in Jupyter:
+```bash
+pip install -r requirements.txt
+jupyter notebook improved_model.ipynb
+```
 
-| Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
-|---|---:|---:|---:|---:|---:|
-| Logistic Regression | 0.9825 | 0.9861 | 0.9861 | 0.9861 | 0.9954 |
-| Decision Tree | 0.9123 | 0.9559 | 0.9028 | 0.9286 | 0.9157 |
-| Random Forest | 0.9561 | 0.9589 | 0.9722 | 0.9655 | 0.9937 |
-
-## Conclusion
-Logistic Regression achieved the highest F1-score in this experiment. Recall is also important because missing a malignant case can have serious consequences.
-
-## How to Run
-1. Install Python and Jupyter Notebook.
-2. Install dependencies using `pip install -r requirements.txt`.
-3. Open `baseline_model.ipynb`.
-4. Run all cells from top to bottom.
-
-## Dataset
-The dataset is loaded from scikit-learn, so no separate dataset download is required.
+## Evaluation decisions
+- A stratified 80/20 train/test split is used.
+- Cross-validation and tuning run only on the training set.
+- The test set is held out for the final comparison.
+- Malignant (class label 0 in scikit-learn's dataset) is explicitly treated as the positive class for precision, recall, and F1 in the final comparison.
+- Improvements are measured, not assumed; scores can vary with library versions.

@@ -1,9 +1,5 @@
-scikit-learn
-pandas
-jupyter
-pandas
 numpy
+pandas
 scikit-learn
-matplotlib
-seaborn
 jupyter
+nbformat
